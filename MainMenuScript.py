@@ -10,7 +10,7 @@ wbg = PhotoImage(file = 'pipbg.png')
 bglabel = Label(mainwindow, image = wbg)
 bglabel.place(x=0, y=0, relwidth=1, relheight=1)
 mainwindow.geometry('480x360')
-mainwindow.attributes("-fullscreen", True)
+mainwindow.attributes("-fullscreen", False)
 
 
 infobox = Text(mainwindow, height=9, width=21)
