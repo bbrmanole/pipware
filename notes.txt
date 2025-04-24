@@ -1,1 +1,2 @@
-lalala
+This is a test note
+This is a test note in a new line
