@@ -6,7 +6,7 @@ mainmenu.update_idletasks()
 infobox = Text(mainmenu, height=9, width=21)
 cbox = ttk.Combobox(mainmenu, width = 11, height=20, 
                     values=["Take Note", "View Notes", 
-                            "Clear Notepad"])
+                            "Clear Notepad",])
 cbox.set("Notes")
 cbox.bind("<<ComboboxSelected>>", 
           lambda event:
@@ -30,14 +30,24 @@ checkcalendarbutton = Button(mainmenu, text = 'Calendar', command=
 keyboardbutton = Button(mainmenu, text = 'Show Keyboard', command = lambda: (mainmenu.attributes("-fullscreen", False), time.sleep(1), 
                                                                                threading.Thread(target=subprocess.call, daemon=True, args = (['matchbox-keyboard'], )).start(), 
                                                                                keyboardstart(mainmenu)))
+buttonRadio = Button(mainmenu,text="Start Radio", command=
+                     lambda: radio.AudioPlayer.ToggleRadio(radio.AudioPlayer))
+
+startRadio = Button(mainmenu,text="Start Listening",command=
+                    lambda:radio.AudioPlayer.StartStation(radio.AudioPlayer))
+
 
 mainmenu.touch_widget(infobox, posx_override=1, posy_override=0, anchor=NE)
 mainmenu.touch_widget(clearinfobutton, posx_override=0, posy_override=0.1, anchor=W)
 mainmenu.touch_widget(shutdownbutton, posx_override=0, posy_override=1, anchor=SW)
+mainmenu.touch_widget(buttonRadio,posx_override=0,posy_override=0,anchor=SW)
+mainmenu.touch_widget(startRadio,posx_override=0,posy_override=0,anchor=SW)
 mainmenu.bind("<Configure>", lambda event: 
               (mainmenu.touch_widget(checktimebutton, posx_override=0, posy_override=(mainmenu.winfo_height()-30)/mainmenu.winfo_height(), anchor=SW), 
                mainmenu.touch_widget(checkcalendarbutton, posx_override=0, posy_override=(mainmenu.winfo_height()-60)/mainmenu.winfo_height(), anchor=SW), 
                mainmenu.touch_widget(cbox, posx_override=0, posy_override=(mainmenu.winfo_height()-90)/mainmenu.winfo_height(), anchor=SW),
                mainmenu.touch_widget(clearinfobutton, posx_override=0, posy_override=(mainmenu.winfo_height()-(mainmenu.winfo_height()-30))/mainmenu.winfo_height(), anchor=SW),
                mainmenu.touch_widget(keyboardbutton, posx_override=(mainmenu.winfo_width()-(mainmenu.winfo_width()-107))/mainmenu.winfo_width(), 
-                                     posy_override=(mainmenu.winfo_height()-(mainmenu.winfo_height()-30))/mainmenu.winfo_height(), anchor=SW)))
+                                     posy_override=(mainmenu.winfo_height()-(mainmenu.winfo_height()-30))/mainmenu.winfo_height(), anchor=SW),
+               mainmenu.touch_widget(buttonRadio,posx_override=0,posy_override=(mainmenu.winfo_height()-120)/mainmenu.winfo_height(), anchor=SW),
+               mainmenu.touch_widget(startRadio,posx_override=0,posy_override=(mainmenu.winfo_height()-150)/mainmenu.winfo_height(),anchor=SW)))

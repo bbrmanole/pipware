@@ -1,5 +1,8 @@
 from depends.utildepends import *
 
+
+
+
 def system_shutdown():
     if messagebox.askyesno(title= "System Shutdown", 
                            message="Do you want to shutdown your PipBoy?"):
@@ -13,29 +16,29 @@ def checktime():
 def clndr():
     return calendar.month(datetime.now().year, datetime.now().month)
     
-def takenotes(a):
-    inp = str(a.get("1.0", "end-1c"))
+def takenotes(textBox):
+    inp = str(textBox.get("1.0", "end-1c"))
     file = os.open('assets/notes.txt', os.O_RDWR | os.O_APPEND)
     os.write(file, str.encode(inp + '\n'))
     os.close(file)
-    a.delete('1.0', END)
-    a.insert("insert", "Added '%s' to notes!" % inp)
+    textBox.delete('1.0', END)
+    textBox.insert("insert", "Added '%s' to notes!" % inp)
 
-def viewnotes(a):
+def viewnotes(textBox):
     file = os.open('assets/notes.txt', os.O_RDONLY)
-    a.delete('1.0', END)
+    textBox.delete('1.0', END)
     if os.path.getsize('assets/notes.txt') != 0:
-        a.insert("insert", os.read(file, 4096))
+        textBox.insert("insert", os.read(file, 4096))
     else:
-        a.insert("insert", "Notes file is empty!")
+        textBox.insert("insert", "Notes file is empty!")
 
-def clearnotes(a):
+def clearnotes(textBox):
     file = os.open('assets/notes.txt', os.O_TRUNC)
     os.close(file)
-    a.delete('1.0', END)
-    a.insert("insert", "All notes erased!")
+    textBox.delete('1.0', END)
+    textBox.insert("insert", "All notes erased!")
 
-def showkeyboard(a):
+def showkeyboard(textBox):
     checker = True
     previous = ''
     current = ''
@@ -52,10 +55,16 @@ def showkeyboard(a):
             
             if previous == 'dead' and current == 'dead':
                 checker = False
-                a.attributes("-fullscreen", True)
+                textBox.attributes("-fullscreen", True)
                 break
         current = previous
 
-def keyboardstart(a):
-    multit = threading.Thread(target=showkeyboard, args=(a,))
+def keyboardstart(textBox):
+    multit = threading.Thread(target=showkeyboard, args=(textBox,))
     multit.start()
+
+
+    
+
+    
+   
