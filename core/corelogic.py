@@ -31,10 +31,18 @@ keyboardbutton = Button(mainmenu, text = 'Show Keyboard', command = lambda: (mai
                                                                                threading.Thread(target=subprocess.call, daemon=True, args = (['matchbox-keyboard'], )).start(), 
                                                                                keyboardstart(mainmenu)))
 buttonRadio = Button(mainmenu,text="Start Radio", command=
-                     lambda: radio.AudioPlayer.ToggleRadio(radio.AudioPlayer))
+                     lambda: radio.Audio2.initSystem(radio.Audio2))
 
 startRadio = Button(mainmenu,text="Start Listening",command=
-                    lambda:radio.AudioPlayer.StartStation(radio.AudioPlayer))
+                    lambda:radio.Audio2.startListening(radio.Audio2))
+
+pauseSong = Button(mainmenu,text="Pause Song",command=
+                   lambda:radio.Audio2.pauseSong(radio.Audio2))
+
+resumeSong = Button(mainmenu,text="Resume Song",command=
+                   lambda:radio.Audio2.resumeSong(radio.Audio2))
+
+
 
 
 mainmenu.touch_widget(infobox, posx_override=1, posy_override=0, anchor=NE)
@@ -42,6 +50,9 @@ mainmenu.touch_widget(clearinfobutton, posx_override=0, posy_override=0.1, ancho
 mainmenu.touch_widget(shutdownbutton, posx_override=0, posy_override=1, anchor=SW)
 mainmenu.touch_widget(buttonRadio,posx_override=0,posy_override=0,anchor=SW)
 mainmenu.touch_widget(startRadio,posx_override=0,posy_override=0,anchor=SW)
+mainmenu.touch_widget(pauseSong,posx_override=0,posy_override=0,anchor=SW)
+mainmenu.touch_widget(resumeSong,posx_override=0,posy_override=0,anchor=SW)
+
 mainmenu.bind("<Configure>", lambda event: 
               (mainmenu.touch_widget(checktimebutton, posx_override=0, posy_override=(mainmenu.winfo_height()-30)/mainmenu.winfo_height(), anchor=SW), 
                mainmenu.touch_widget(checkcalendarbutton, posx_override=0, posy_override=(mainmenu.winfo_height()-60)/mainmenu.winfo_height(), anchor=SW), 
@@ -50,4 +61,7 @@ mainmenu.bind("<Configure>", lambda event:
                mainmenu.touch_widget(keyboardbutton, posx_override=(mainmenu.winfo_width()-(mainmenu.winfo_width()-107))/mainmenu.winfo_width(), 
                                      posy_override=(mainmenu.winfo_height()-(mainmenu.winfo_height()-30))/mainmenu.winfo_height(), anchor=SW),
                mainmenu.touch_widget(buttonRadio,posx_override=0,posy_override=(mainmenu.winfo_height()-120)/mainmenu.winfo_height(), anchor=SW),
-               mainmenu.touch_widget(startRadio,posx_override=0,posy_override=(mainmenu.winfo_height()-150)/mainmenu.winfo_height(),anchor=SW)))
+               mainmenu.touch_widget(startRadio,posx_override=0,posy_override=(mainmenu.winfo_height()-150)/mainmenu.winfo_height(),anchor=SW),
+               mainmenu.touch_widget(pauseSong,posx_override=0,posy_override=(mainmenu.winfo_height()-180)/mainmenu.winfo_height(),anchor=SW),
+               mainmenu.touch_widget(resumeSong,posx_override=0,posy_override=(mainmenu.winfo_height()-210)/mainmenu.winfo_height(),anchor=SW),
+               ))
