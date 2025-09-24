@@ -113,6 +113,7 @@ If you can't be asked to contribute but still want to support, you can buy me a 
 * ### Add a comprehensive documentation
 * ### Add more features (e.g. GPS)
 * ### Add a startup script to enable the program to launch on RaspberryPi Startup
+* ### Add .deb and .rpm packages to assets
 * ### Fix issues
 * ### Refined installer wizard
 * ### Revamp the music player
